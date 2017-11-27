@@ -30,8 +30,8 @@ public class StepDefinitions {
         // Write code here that turns the phrase above into concrete actions
 
 
-        // String url = "http://denotsl454.int.kn:8013//msswifttransformation/service";
-        String url = "http://denotsl278.int.kn:8013/msswiftenvironment/meta/configurations/";
+         String url = "http://denotsl454.int.kn:8013//msswifttransformation/service";
+       // String url = "http://denotsl278.int.kn:8013/msswiftenvironment/meta/configurations/";
         uri = new URI(url);
         requestSpec =
                 given()
@@ -56,7 +56,7 @@ public class StepDefinitions {
         // Write code here that turns the phrase above into concrete actions
         requestSpec.then()
                 .statusCode(200).log().all()
-                .body("values:", equalTo("LT1_d"));
+                .body("values:", equalTo("LT0_d"));
 
 
         // Validate that response status code matches 200
@@ -66,7 +66,7 @@ public class StepDefinitions {
 
         // Validate that response body contains "LT0"
         String res = response.getBody().asString();
-        Assert.assertThat(res, containsString("LT1"));
+        Assert.assertThat(res, containsString("LT0"));
         System.out.println(res);
 
 
@@ -174,11 +174,12 @@ public class StepDefinitions {
                 given()
                         // .accept(ContentType.JSON)
                         .contentType("application/json")
-                        .header("X-KN-MESSAGE-CORRELATION", 23232-3434343-34345)
+                        .header("X-KN-MESSAGE-CORRELATION", 23232-3434343-34346)
 
                         .header("X-KN-SENDER-SOFTWARE-VERSION", 1)
                         .header("X-KN-SWIFT-STEP", "{\"routeId\":null,\"stepNo\":null,\"action\":{\"id\":null,\"name\":null,\"actionType\":\"DISPATCHER\",\"serviceId\":null,\"actionType\":null,\"synchronousCapable\":null,\"broker\":null,\"queue\":null,\"topic\":\"KNMS_SwiftLOG_DespatchConfirmationV0100\"},\"synchronous\":null}")
                         .body(file).log().all();
+
     }
 
     @When("^I call the web Message Dispatcher api endpoint using POST$")
